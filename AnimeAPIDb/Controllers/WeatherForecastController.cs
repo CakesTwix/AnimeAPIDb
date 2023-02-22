@@ -1,3 +1,4 @@
+using AnimeAPIDb.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnimeAPIDb.Controllers;

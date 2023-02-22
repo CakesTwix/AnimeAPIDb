@@ -1,4 +1,4 @@
-namespace AnimeAPIDb;
+namespace AnimeAPIDb.Models;
 
 public class WeatherForecast
 {
