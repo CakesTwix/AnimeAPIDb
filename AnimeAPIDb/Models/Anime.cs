@@ -20,5 +20,16 @@ public class Anime
     public int mal_id { get; set; }
     public int imdb_rating { get; set; }
     public int year { get; set; }
-    // public List<String> genres { get; set; }
+
+    public List<Tag> tags { get; set; }
+}
+
+public class Tag
+{
+    [Key]
+    public int id { get; set; }
+    public string name { get; set; }
+    
+    public int Animeid { get; set; }
+    public Anime Anime { get; set; }
 }

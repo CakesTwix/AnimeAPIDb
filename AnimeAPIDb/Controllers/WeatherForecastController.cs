@@ -1,5 +1,6 @@
 using AnimeAPIDb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AnimeAPIDb.Controllers;
 
@@ -11,12 +12,14 @@ public class WeatherForecastController : ControllerBase
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
-
+    
+    private AnimeContext _db;
     private readonly ILogger<WeatherForecastController> _logger;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger, AnimeContext db)
     {
         _logger = logger;
+        this._db = db;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
@@ -29,5 +32,12 @@ public class WeatherForecastController : ControllerBase
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+    }
+    
+    [HttpGet]
+    [Route("getAnime")]
+    public async Task<IActionResult> GetAnimeAsync()
+    {
+        return Ok(await _db.Animes.ToListAsync());
     }
 }

@@ -10,4 +10,5 @@ public class AnimeContext : DbContext
     }
 
     public DbSet<Anime> Animes { get; set; }
+    public DbSet<Tag> Tags { get; set; }
 }
