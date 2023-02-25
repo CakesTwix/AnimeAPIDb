@@ -5,7 +5,7 @@ namespace AnimeAPIDb.Models;
 public class Anime
 {
     [Key]
-    public int id { get; set; }
+    public int Animeid { get; set; }
     public string codename { get; set; }
     [Required]
     public string name_ua { get; set; }
@@ -20,16 +20,16 @@ public class Anime
     public int mal_id { get; set; }
     public int imdb_rating { get; set; }
     public int year { get; set; }
-
-    public List<Tag> tags { get; set; }
+    
+    public virtual ICollection<Tag> Tags { get; set; }
 }
 
 public class Tag
 {
     [Key]
-    public int id { get; set; }
+    public int Tagid { get; set; }
+    [Required]
     public string name { get; set; }
     
-    public int Animeid { get; set; }
-    public Anime Anime { get; set; }
+    public virtual Anime Anime { get; set; }
 }
