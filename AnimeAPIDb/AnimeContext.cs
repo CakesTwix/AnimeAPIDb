@@ -9,6 +9,14 @@ public class AnimeContext : DbContext
     {
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        
+    }
+
     public DbSet<Anime> Animes { get; set; }
     public DbSet<Tag> Tags { get; set; }
+    public DbSet<Season> Seasons { get; set; }
+    public DbSet<Episodes> Episodes { get; set; }
+    public DbSet<Links> Links { get; set; }
 }

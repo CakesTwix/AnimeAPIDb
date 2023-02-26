@@ -22,6 +22,12 @@ public class AnimeController : ControllerBase
     [Route("getAnime")]
     public async Task<IActionResult> GetAnimeAsync()
     {
-        return Ok(await _db.Animes.Include(x => x.Tags).ToListAsync());
+        return Ok(await _db.Animes
+            .Include(x => x.Tags)
+            .Include(x => x.Seasons)
+            .ThenInclude(x => x.Episodes)
+            .ThenInclude(x =>x.Links)
+            .ToListAsync()
+        );
     }
 }

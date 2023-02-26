@@ -13,10 +13,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContextPool<AnimeContext>(options =>
     options.UseSqlite("Filename=MyDatabase.db"));
 
-// For m:m
-builder.Services.AddControllers().AddJsonOptions(x =>
-    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
