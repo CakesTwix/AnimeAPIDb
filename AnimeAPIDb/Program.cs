@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using AnimeAPIDb;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContextPool<AnimeContext>(options =>
     options.UseSqlite("Filename=MyDatabase.db"));
 
+// For m:m
+builder.Services.AddControllers().AddJsonOptions(x =>
+    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,7 +25,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 app.UseHttpsRedirection();
 

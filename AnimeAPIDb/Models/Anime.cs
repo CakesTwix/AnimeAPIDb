@@ -5,30 +5,30 @@ namespace AnimeAPIDb.Models;
 public class Anime
 {
     [Key]
-    public int Animeid { get; set; }
-    public string codename { get; set; }
+    public int Id { get; set; }
+    public string Codename { get; set; }
     [Required]
-    public string name_ua { get; set; }
-    public string name_en { get; set; }
+    public string Name_ua { get; set; }
+    public string Name_en { get; set; }
     [Required]
-    public string desc { get; set; }
+    public string Desc { get; set; }
     [Required]
-    public string type { get; set; }
-    public string poster { get; set; }
-    public int anilist_id { get; set; }
-    public int kitsu_id { get; set; }
-    public int mal_id { get; set; }
-    public int imdb_rating { get; set; }
-    public int year { get; set; }
+    public string Type { get; set; }
+    public string Poster { get; set; }
+    public int Anilist_id { get; set; }
+    public int Kitsu_id { get; set; }
+    public int Mal_id { get; set; }
+    public int Imdb_rating { get; set; }
+    public int Year { get; set; }
     
     public virtual ICollection<Tag> Tags { get; set; }
 }
 
-// TODO: Make sure there are no duplicates by tag name
 public class Tag
 {
     [Key]
-    public int Tagid { get; set; }
+    public int Id { get; set; }
     [Required]
-    public string name { get; set; }
+    public string Name { get; set; }
+    public ICollection<Anime> Animes { get; set; }
 }
