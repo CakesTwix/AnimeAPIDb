@@ -38,6 +38,6 @@ public class WeatherForecastController : ControllerBase
     [Route("getAnime")]
     public async Task<IActionResult> GetAnimeAsync()
     {
-        return Ok(await _db.Animes.ToListAsync());
+        return Ok(await _db.Animes.Include(x => x.Tags).ToListAsync());
     }
 }

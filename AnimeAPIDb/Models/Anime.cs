@@ -24,12 +24,11 @@ public class Anime
     public virtual ICollection<Tag> Tags { get; set; }
 }
 
+// TODO: Make sure there are no duplicates by tag name
 public class Tag
 {
     [Key]
     public int Tagid { get; set; }
     [Required]
     public string name { get; set; }
-    
-    public virtual Anime Anime { get; set; }
 }
