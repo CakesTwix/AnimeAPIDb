@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using AnimeAPIDb;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,7 +21,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 app.UseHttpsRedirection();
 
