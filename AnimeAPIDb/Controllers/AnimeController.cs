@@ -65,4 +65,13 @@ public class AnimeController : ControllerBase
         await _db.SaveChangesAsync();
         return Ok(anime);
     }
+    
+    [HttpPost]
+    [Route("editAnime")]
+    public async Task<IActionResult> EditAnimeAsync(Anime anime)
+    {
+        _db.Animes.Update(anime);
+        await _db.SaveChangesAsync();
+        return Ok(anime);
+    }
 }
