@@ -70,8 +70,13 @@ public class AnimeController : ControllerBase
     [Route("editAnime")]
     public async Task<IActionResult> EditAnimeAsync(Anime anime)
     {
-        _db.Animes.Update(anime);
-        await _db.SaveChangesAsync();
-        return Ok(anime);
+        var animeFirst = _db.Animes.FirstOrDefault(x => x.Id == anime.Id);
+        if(animeFirst != null)
+        {
+            _db.Entry(animeFirst).CurrentValues.SetValues(anime);
+            await _db.SaveChangesAsync();
+            return Ok();
+        }
+        return BadRequest();
     }
 }
