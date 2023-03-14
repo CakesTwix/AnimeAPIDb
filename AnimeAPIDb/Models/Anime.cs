@@ -10,17 +10,17 @@ public class Anime
     public int Id { get; set; }
     public string Codename { get; set; }
     [Required]
-    public string Name_ua { get; set; }
-    public string Name_en { get; set; }
+    public string NameUa { get; set; }
+    [Required]
+    public string NameEn { get; set; }
     [Required]
     public string Desc { get; set; }
-    [Required]
     public string Type { get; set; }
     public string Poster { get; set; }
-    public int Anilist_id { get; set; }
-    public int Kitsu_id { get; set; }
-    public int Mal_id { get; set; }
-    public int Imdb_rating { get; set; }
+    public int AnilistId { get; set; }
+    public int KitsuId { get; set; }
+    public int MalId { get; set; }
+    public int ImdbId { get; set; }
     public int Year { get; set; }
     
     public virtual ICollection<Tag> Tags { get; set; }
@@ -28,7 +28,9 @@ public class Anime
 
     public Anime()
     {
+        this.Poster = "https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg";
         Tags = new List<Tag>();
+        Seasons = new List<Season>();
     }
 }
 
@@ -52,6 +54,7 @@ public class Season
     [Key]
     public int Id { get; set; }
     public string Name { get; set; }
+    [Required]
     public int Number { get; set; }
     public ICollection<Episodes> Episodes { get; set; }
 }
@@ -63,6 +66,7 @@ public class Episodes
     public string Name { get; set; }
     public string Poster { get; set; }
     public string Desc { get; set; }
+    [Required]
     public int Number { get; set; }
     public ICollection<Links> Links { get; set; }
 }
@@ -71,7 +75,10 @@ public class Links
 {
     [Key]
     public int Id { get; set; }
+    [Required]
     public string SourceName { get; set; }
+    [Required]
     public string url { get; set; }
+    [Required]
     public bool isDub { get; set; }
 }
