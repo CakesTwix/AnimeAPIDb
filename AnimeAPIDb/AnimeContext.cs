@@ -1,17 +1,13 @@
 using AnimeAPIDb.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AnimeAPIDb;
 
-public class AnimeContext : DbContext
+public class AnimeContext : IdentityDbContext
 {
     public AnimeContext(DbContextOptions<AnimeContext> options) : base(options)
     {
-    }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        
     }
 
     public DbSet<Anime> Animes { get; set; }
