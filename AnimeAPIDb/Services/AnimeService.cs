@@ -20,32 +20,29 @@ namespace AnimeAPIDb.Services
         public async Task<List<Anime>?> GetAllAnimeAsync()
         {
             return _db.Animes is null ? null : await _db.Animes.Include(x => x.Tags)
-                                   .Include(x => x.Seasons)
-                                   .ThenInclude(x => x.Episodes)
-                                   .ThenInclude(x => x.Links)
-                                   .ToListAsync();
+                .Include(x => x.Episodes)
+                .ThenInclude(x => x.Links)
+                .ToListAsync();
         }
 
         public async Task<Anime?> GetAnimeAsync(int? id, string? codename)
         {
             if (id.HasValue && !codename.IsNullOrEmpty())
-            {
                 return null;
-            }
-
+            
+            // ID 
             if (id.HasValue) return await _db.Animes.Include(x => x.Tags)
-                                                    .Include(x => x.Seasons)
-                                                    .ThenInclude(x => x.Episodes)
-                                                    .ThenInclude(x => x.Links)
-                                                    .Where(x => x.Id == id)
-                                                    .FirstOrDefaultAsync();
-
+                .Include(x => x.Episodes)
+                .ThenInclude(x => x.Links)
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
+            
+            // Codename
             return await _db.Animes.Include(x => x.Tags)
-                                   .Include(x => x.Seasons)
-                                   .ThenInclude(x => x.Episodes)
-                                   .ThenInclude(x => x.Links)
-                                   .Where(x => x.Codename == codename)
-                                   .FirstOrDefaultAsync();
+                .Include(x => x.Episodes)
+                .ThenInclude(x => x.Links)
+                .Where(x => x.Codename == codename)
+                .FirstOrDefaultAsync();
         }
 
         public async Task<Anime> AddAnimeAsync(Anime anime)

@@ -18,7 +18,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AnimeContext>();
 
+// Services
 builder.Services.AddScoped<AnimeService>();
+builder.Services.AddScoped<TagService>();
+builder.Services.AddScoped<EpisodeService>();
 
 builder.Services.AddControllersWithViews();
 

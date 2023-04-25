@@ -19,28 +19,21 @@ public class AnimesAPIController : ControllerBase
     }
 
     [HttpGet]
-    [Route("getAllAnime")]
-    public async Task<IActionResult> GetAllAnimeAsync()
+    [Route("all")]
+    public async Task<IActionResult> GetAllAnimesAsync()
     {
         return Ok(await _service.GetAllAnimeAsync());
     }
-
+    
     [HttpGet]
-    [Route("getAnime")]
+    [Route("get")]
     public async Task<IActionResult> GetAnimeAsync(int? id, string? codename)
     {
-        if (id.HasValue && !codename.IsNullOrEmpty())
-        {
-            return BadRequest("Only one parameter");
-        }
-
-        if (id.HasValue) return Ok(await _service.GetAnimeAsync(id, null));
-
-        return Ok(await _service.GetAnimeAsync(null, codename));
+        return Ok(await _service.GetAnimeAsync(id, codename));
     }
-
+    
     [HttpPost]
-    [Route("addAnime")]
+    [Route("add")]
     public async Task<IActionResult> AddAnimeAsync(Anime anime)
     {
         await _service.AddAnimeAsync(anime);
@@ -48,10 +41,18 @@ public class AnimesAPIController : ControllerBase
     }
 
     [HttpPost]
-    [Route("editAnime")]
+    [Route("edit")]
     public async Task<IActionResult> EditAnimeAsync(Anime anime)
     {
         var result = await _service.EditAnimeAsync(anime);
         return result ? Ok() : BadRequest();
+    }
+
+    [HttpDelete]
+    [Route(("del"))]
+    public async Task<IActionResult> DelAnimeAsync(int id)
+    {
+        await _service.DeleteAnimeAsync(id);
+        return Ok();
     }
 }

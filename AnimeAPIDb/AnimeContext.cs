@@ -12,7 +12,6 @@ public class AnimeContext : IdentityDbContext
 
     public DbSet<Anime> Animes { get; set; }
     public DbSet<Tag> Tags { get; set; }
-    public DbSet<Season> Seasons { get; set; }
-    public DbSet<Episodes> Episodes { get; set; }
+    public DbSet<Episode> Episodes { get; set; }
     public DbSet<Links> Links { get; set; }
 }
